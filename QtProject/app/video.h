@@ -3,7 +3,9 @@
 
 #include <QDebug>               //generic includes go here as video.h is used by many files
 #include <QRunnable>
+#if defined(Q_OS_MACOS)
 #include <QProcess>
+#endif
 #include <QBuffer>
 #include <QTemporaryDir>
 #include "opencv2/imgproc.hpp"

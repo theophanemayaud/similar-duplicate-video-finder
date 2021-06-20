@@ -436,7 +436,8 @@ void Comparison::openFileManager(const QString &filename) const
 #ifdef Q_OS_WIN
     // TODO : for UWP, can't use process, so maybe change behavior to open folder, without file already selected :
     // https://stackoverflow.com/questions/48243245/qdesktopservicesopenurl-cannot-open-directory-in-mac-finder
-    QProcess::startDetached("explorer", {"/select,", QDir::toNativeSeparators(filename)});
+   // QProcess::startDetached("explorer", {"/select,", QDir::toNativeSeparators(filename)});
+    QDesktopServices::openUrl(QString("file://%1").arg(QFileInfo(filename).absolutePath()));
 #elif defined(Q_OS_MACOS)
         QProcess::startDetached("open", QStringList() << "-R" << filename);
 #elif defined(Q_OS_X11)
